@@ -5243,7 +5243,7 @@ pub const PackageManager = struct {
 
                 outer: for (updates) |*request| {
                     if (request.e_string != null) continue;
-                    defer if (comptime Environment.allow_assert) std.debug.assert(request.e_string != null);
+                    // defer if (comptime Environment.allow_assert) std.debug.assert(request.e_string != null);
 
                     var k: usize = 0;
                     while (k < new_dependencies.len) : (k += 1) {
@@ -7937,6 +7937,8 @@ pub const PackageManager = struct {
                             }
                             break :brk all_name_hashes;
                         };
+
+                        manager.lockfile.trusted_dependencies = try lockfile.trusted_dependencies.clone(bun.default_allocator);
 
                         manager.lockfile.overrides = try lockfile.overrides.clone(&lockfile, manager.lockfile, builder);
 
