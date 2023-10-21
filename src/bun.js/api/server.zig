@@ -159,7 +159,7 @@ pub const ServerConfig = struct {
     inspector: bool = false,
     reuse_port: bool = false,
     id: []const u8 = "",
-    allow_hot: bool = true,
+    allow_hot: bool = false,
 
     pub fn computeID(this: *const ServerConfig, allocator: std.mem.Allocator) []const u8 {
         var arraylist = std.ArrayList(u8).init(allocator);
